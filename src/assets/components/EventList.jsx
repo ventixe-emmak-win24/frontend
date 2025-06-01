@@ -4,13 +4,13 @@ import EventItem from './EventItem';
 const EventList = () => {
     const [events, setEvents] = useState([]);
 
-const getEvents = async () => {
-            const res = await fetch("https://ek-win24-eventservice-hpbzephwfyavhrgr.swedencentral-01.azurewebsites.net/api/events")
-            if (res.ok){
-                const response = await res.json();
-                setEvents(response.result);
-            }
+    const getEvents = async () => {
+        const res = await fetch("https://ek-win24-eventservice-hpbzephwfyavhrgr.swedencentral-01.azurewebsites.net/api/events")
+        if (res.ok){
+            const response = await res.json();
+            setEvents(response.result);
         }
+    }
 
     useEffect(() => {
         getEvents();
