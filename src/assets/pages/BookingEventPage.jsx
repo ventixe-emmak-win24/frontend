@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const BookingEventPage = () => {
     const {id} = useParams();
+    const navigate = useNavigate();
     const [event, setEvent] = useState({});
     const [formData, setFormData] = useState({ 
         eventId: id, 
@@ -58,6 +59,7 @@ const BookingEventPage = () => {
                 console.error("Booking failed.");
             } else {
                 console.log("Booking successful.");
+                navigate("/");
             }
         } catch (error) {
             console.error('Error submitting booking:', error);
