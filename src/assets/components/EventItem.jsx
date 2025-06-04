@@ -1,7 +1,7 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 const EventItem = ({ item }) => {
+  
 
   return (
     <Link to={`/events/${item.id}`} state={{ event: item }} className="event-item-link">
@@ -28,9 +28,8 @@ const EventItem = ({ item }) => {
           return `${month} ${day}, ${year} - ${time}`;  
           })()}
         </div>
-
-        <div className="event-title">{item.title}</div>
         
+        <div className="event-title">{item.title}</div>
         <div className="event-location"><i className="fa-sharp fa-solid fa-location-dot"></i> {item.location}</div>
         
       </div>

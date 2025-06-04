@@ -1,15 +1,20 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import LogoTitle  from "../images/LogoTitle.svg"
+import Logo from "../images/Logo.svg"
+
 
 const Nav = () => {
+  
   return (
-    
     <nav>
-       <NavLink to="/">
-        <span><i className="fa-sharp fa-solid fa-ticket"></i></span>
-        <span>Events</span>
-       </NavLink>
+      <img src={LogoTitle} alt="Logo" className="nav-logo-full" />
+      <img src={Logo} alt="Logo" className="nav-logo-small" />
+      <Link to="/" className="nav-link link-active" >
+        <span className=""><i className="fa-sharp fa-solid fa-ticket"></i></span>
+        <span className="link-text">Events</span>
+      </Link>
     </nav>
+    
   )
 }
 

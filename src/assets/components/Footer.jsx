@@ -3,7 +3,8 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer>
-        <p>© 2025 Your Company Name. All rights reserved.</p>
+        <p>Copyright © 2025.</p>
+        <p></p>
         
     </footer>
   )
