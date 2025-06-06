@@ -2,6 +2,7 @@ import { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import Packages from '../components/Packages';
 import { useLocation, useParams } from 'react-router-dom';
+import TermsConditions from '../components/TermsConditions';
 
 const EventDetailsPage = () => {
     const {id} = useParams()
@@ -78,12 +79,14 @@ const EventDetailsPage = () => {
             
         </div>
 
-        <div className="terms-conditions"></div>
+        <div className="terms-conditions">
+            <TermsConditions />
+        </div>
 
         <div className="event-packages"> 
             <Packages packages={event.packages} /> 
             
-        </div>  
+        </div> 
     </div>
      )
     

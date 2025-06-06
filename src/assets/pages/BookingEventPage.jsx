@@ -6,6 +6,7 @@ const BookingEventPage = () => {
     const navigate = useNavigate();
     const [event, setEvent] = useState({});
     const [showConfirmation, setShowConfirmation] = useState(false); // Claude Sonnet 4
+    const [isSubmitting, setIsSubmitting] = useState(false); // Claude Sonnet 4
 
     const [formData, setFormData] = useState({ 
         eventId: id, 
@@ -56,6 +57,8 @@ const BookingEventPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true); // Claude Sonnet 4
+
         try {
                 const res = await fetch(`https://ek-win24-bookingservice-hbhhhgh3eperffgk.swedencentral-01.azurewebsites.net/api/bookings`, {
                 method: 'POST',
@@ -67,12 +70,18 @@ const BookingEventPage = () => {
             
             if (!res.ok){
                 console.error("Booking failed.");
+                setIsSubmitting(false); // Claude Sonnet 4
             } else {
                 console.log("Booking successful.");
-                setShowConfirmation(true); // Claude Sonnet 4
+                setTimeout(() => {
+                    setIsSubmitting(false); // Claude Sonnet 4
+                    setShowConfirmation(true); // Claude Sonnet 4
+                }, 500)
+                
             }
         } catch (error) {
             console.error('Error submitting booking:', error);
+            setIsSubmitting(false); // Claude Sonnet 4
         }
     }
 
@@ -154,9 +163,34 @@ const BookingEventPage = () => {
                     </div>
                 </div>
 
-                <button type="submit" className="btn-medium-primary-noIcon">Book Now</button>
+                <button 
+                type="submit" 
+                className="btn-medium-primary-noIcon"
+                disabled={isSubmitting}
+                >
+                    {/* Claude Sonnet 4 */}
+                        {isSubmitting ? (
+                            <>
+                                <div className="button-spinner"></div>
+                                Processing...
+                            </>
+                        ) : (
+                            'Book Now'
+                        )}
+                
+                </button>
             </form>
         </div>
+
+        {isSubmitting && (
+            <div className="processing-overlay">
+                <div className="processing-content">
+                    <div className="spinner"></div>
+                    <p>Processing your booking...</p>
+                </div>
+            </div>
+        )}         
+
 
         {/* Claude Sonnet 4 */}
         {showConfirmation && (
